@@ -3,7 +3,9 @@ package com.example
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import play.api.libs.ws.StreamedResponse
+import play.api.libs.ws.ahc.AhcWSClient
 import play.api.libs.ws.ning.NingWSClient
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
@@ -19,7 +21,7 @@ object WebClient {
     // Instantiation of the client
     // In a real-life application, you would instantiate one, share it everywhere,
     // and call wsClient.close() when you're done
-    val wsClient = NingWSClient()
+    val wsClient = AhcWSClient()
     wsClient
       .url("http://akka.io")
       .get()
@@ -42,7 +44,7 @@ object WebClient {
     // Instantiation of the client
     // In a real-life application, you would instantiate one, share it everywhere,
     // and call wsClient.close() when you're done
-    val wsClient = NingWSClient()
+    val wsClient = AhcWSClient()
 
     // Make the request
     val futureResponse: Future[StreamedResponse] =
